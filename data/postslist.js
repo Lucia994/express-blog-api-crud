@@ -1,3 +1,5 @@
+const port = 3000
+
 const posts = [
         {
             title: "Ciambellone",
@@ -35,3 +37,5 @@ const posts = [
 
         }
     ];
+
+    module.exports = postslist; 
