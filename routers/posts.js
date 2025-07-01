@@ -1,25 +1,27 @@
 const express = require("express")
 const router = express.Router();
-const port = 3000
-const postslistRouter = require("./data/postslist");
+// const port = 3000
+const postslist = require("../data/postslist");
 
 
 //Add a route to get blog posts 
 //Index
 router.get('/', (req, res) => {
-    res.json(posts);
+    res.json(postslist);
 })
 
 /*Show (read)*/
 router.get('/:id', (req, res) => {
-    const id = req.params.id
-    res.send(`You want to show post's details with id:${id}`)
-
+    const id = parseInt(req.params.id)
+    const post = postslist.find(post => post.id === id);
+    res.json(post)
 })
+
 /*Store (create)*/
 router.post('/', (req, res) => {
     res.send(`Save a new post into db`)
 })
+
 /*Update (update)*/
 router.put('/:id', (req, res) => {
     const id = req.params.id

@@ -1,7 +1,8 @@
 const port = 3000
 
-const posts = [
+const postslist = [
         {
+            id:1,
             title: "Ciambellone",
             content: "",
             img: `http://localhost:${port}/images/ciambellone.jpeg`,
@@ -9,6 +10,7 @@ const posts = [
 
         },
         {
+            id:2,
             title: "Cracker barbabietola",
             content: "",
             img: `http://localhost:${port}/images/cracker_barbabietola.jpeg`,
@@ -16,6 +18,7 @@ const posts = [
 
         },
         {
+            id:3,
             title: "Pane fritto dolce",
             content: "",
             img: `http://localhost:${port}/images/pane_fritto_dolce.jpeg`,
@@ -23,6 +26,7 @@ const posts = [
 
         },
         {
+            id:4,
             title: "Pasta barbabietola",
             content: "",
             img: `http://localhost:${port}/images/pasta_barbabietola.jpeg`,
@@ -30,6 +34,7 @@ const posts = [
 
         },
         {
+            id:5,
             title: "Torta paesana",
             content: "",
             img: `http://localhost:${port}/images/torta_paesana.jpeg`,
