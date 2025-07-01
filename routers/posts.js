@@ -14,6 +14,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = parseInt(req.params.id)
     const post = postslist.find(post => post.id === id);
+
+    if (!post) {
+        return res.json({
+            error: "Not Found",
+            message: "Post non trovata"
+        })
+    }
+ 
     res.json(post)
 })
 
@@ -36,8 +44,19 @@ router.patch('/:id', (req, res) => {
 })
 /*Destroy (delete) */
 router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    res.send(`You want to delete post with id:${id}`)
+    const id = parseInt(req.params.id)
+ // cerchiamo il pizza tramite id
+ const post = postslist.find(post => post.id === id);
+ // Piccolo controllo
+ if (!post) {
+ res.status(404);
+ return res.json({
+ status: 404,
+ error: "Not Found",
+ message: "Post non trovata"
+ })
+ }
+ postslist.splice(postslist.indexOf(post), 1)
 })
 
 module.exports = router;
