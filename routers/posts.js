@@ -2,62 +2,24 @@ const express = require("express")
 const router = express.Router();
 // const port = 3000
 const postslist = require("../data/postslist");
-
+const postController = require('../controllers/postController')
 
 //Add a route to get blog posts 
 //Index
-router.get('/', (req, res) => {
-    res.json(postslist);
-})
+router.get('/', postController.index)
 
 /*Show (read)*/
-router.get('/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    const post = postslist.find(post => post.id === id);
-
-    if (!post) {
-        return res.json({
-            error: "Not Found",
-            message: "Post non trovato"
-        })
-    }
-
-    res.json(post)
-})
+router.get('/:id', postController.show)
 
 /*Store (create)*/
-router.post('/', (req, res) => {
-    res.send(`Save a new post into db`)
-})
+router.post('/', postController.store)
 
 /*Update (update)*/
-router.put('/:id', (req, res) => {
-    const id = req.params.id
-    res.send(`You want to update post with id:${id}`)
+router.put('/:id', postController.update)
 
-})
 /*Modify (update) */
-router.patch('/:id', (req, res) => {
-    const id = req.params.id
-    res.send(`You want to update post with id:${id}`)
-
-})
+router.patch('/:id', postController.update)
 /*Destroy (delete) */
-router.delete('/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    const post = postslist.find(post => post.id === id);
-    if (!post) {
-        res.status(404);
-        return res.json({
-            status: 404,
-            error: "Not Found",
-            message: "Post non trovato"
-        })
-    }
-
-    postslist.splice(postslist.indexOf(post), 1)
-    console.log(postslist);
-    res.sendStatus(204)
-})
+router.delete('/:id', postController.destroy)
 
 module.exports = router;

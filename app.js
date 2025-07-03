@@ -5,9 +5,13 @@ const app = express()
 //Define the port you want to use for the server listener
 const port = 3000
 const postsRouter = require("./routers/posts");
+const errorsHandler = require('./middlewares/errorsHandler.js');
+const notFound = require('./middlewares/notFound.js');
 
-
+app.use(notFound)
+app.use(errorsHandler) 
 app.use(express.static("public"))
+app.use(express.json())
 
 //Define a route of the root URL
 app.get('/', (req, res) => {
