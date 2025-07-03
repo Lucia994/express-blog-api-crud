@@ -8,8 +8,6 @@ const postsRouter = require("./routers/posts");
 const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
 
-app.use(notFound)
-app.use(errorsHandler) 
 app.use(express.static("public"))
 app.use(express.json())
 
@@ -21,7 +19,8 @@ app.get('/', (req, res) => {
 })
 
 app.use("/posts", postsRouter)
-
+app.use(notFound)
+app.use(errorsHandler)
 //Start the server listener
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
