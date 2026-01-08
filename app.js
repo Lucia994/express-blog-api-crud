@@ -1,6 +1,5 @@
 import express from "express";
 import postRouter from "./routers/postsRouter.js";
-import postController from "./controllers/postController.js";
 import errorsHandler from "./middlewares/errorHandler.js";
 import notFound from "./middlewares/notFound.js";
 
@@ -22,6 +21,11 @@ app.get("/", (req, res) => {
 app.use(errorsHandler);
 app.use(notFound);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+app.listen(port, (error) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(`Example app listening on port ${port}`);
+    }
+
 })
